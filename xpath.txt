@@ -1,0 +1,7 @@
+links 
+
+
+-- Noticias del sitio web = //div[@class = "col mb-4"]/div/h2/a/@href
+-- titulo del articulo = //div[@class = "mb-auto"]/h2/a/text()   
+-- Resumen = //div[@class = "lead"]/p/text()
+-- Cuerpo =  //div[@class = "html-content"]/p[not(class)]/text()
