@@ -1,20 +1,22 @@
 import requests 
 import lxml.html as html
 
-HOME_URL = 'https://www.larepublica.co/'
 
-XPATH_LINK_TO_ARTICLE = '//div[@class = "col mb-4"]/div/h2/a/@href'
-XPATH_TITTLE = '//div[@class = "mb-auto"]/h2/a/text()'
-XPATH_SUMMARY = '//div[@class = "lead"]/p/text()'
-XPATH_BODY = '//div[@class = "html-content"]/p[not(class)]/text()'
+
+url = 'https://www.larepublica.co/'
+
+xpath_article = '//div[@class="V_Title"]/text-fill/a/@href'
+#xpath_tittle = '//div[@class="mb-auto"]/h2/span/text()'
+#xpath_summary = '//div[@class="lead"]/p/text()'
+#xpath_body = '//div[@class="html-content"]/p[not(@class)]/text()'
 
 def parse_home():
     try:
-        response = requests.get(HOME_URL)
+        response = requests.get(url)
         if response.status_code == 200:
             home = response.content.decode('utf-8')
             parsed = html.fromstring(home)
-            links_to_notices = parsed.xpath(XPATH_LINK_TO_ARTICLE)
+            links_to_notices = parsed.xpath(xpath_article)
             print(links_to_notices) 
 
 
@@ -23,10 +25,6 @@ def parse_home():
 
     except ValueError as ve:
         print(ve)
-
-
-
-
 
 def run():
     parse_home()
